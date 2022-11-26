@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { TouchableOpacity, Image, Text, View, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { doc, onSnapshot, collection, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { firestoreCon } from "../../firebase/config";
 import { getDataProfile } from "../../feactures/home/Home";
 import { colores } from "../../theme/colores";
@@ -19,35 +18,24 @@ export const AddStory = () => {
     const dispatch = useDispatch();
 
 
-    const addStoryPhoto = () => {
 
-    }
+    // const imagePicker = async () => {
+    //     let result = await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //     });
 
+    //     // console.log(result);
+    //     // console.log('Inagenes');
 
-    const addStoryHome = async () => {
-
-        const docRef = collection();
-    }
-
-
-
-    const imagePicker = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        // console.log(result);
-        // console.log('Inagenes');
-
-        if (result.cancelled) {
-            return null;
-        } else {
-            setImage(result.uri);
-        }
-    }
+    //     if (result.cancelled) {
+    //         return null;
+    //     } else {
+    //         setImage(result.uri);
+    //     }
+    // }
 
 
     useEffect(() => {

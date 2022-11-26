@@ -17,6 +17,7 @@ export const DetailPost = () => {
         <View >
             <FlatList
                 data={dataPerfilPost}
+                keyExtractor={item => item.createAt}
                 renderItem={({ item, index, separators }) => <RenderItemPostComponent item={item} index={index} dataPerfil={dataPerfil} />}
             />
         </View>

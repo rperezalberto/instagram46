@@ -4,12 +4,6 @@ import * as ImagePicker from 'expo-image-picker';
 import { colores } from '../../theme/colores';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
-
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storageCon } from '../../firebase/config';
-import 'react-native-get-random-values';
-import { v4 } from 'uuid';
-import { LoadImg } from '../../util/util';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -19,18 +13,7 @@ export const AddPhotoStory = () => {
     const navigation = useNavigation();
 
 
-    // const uploadPhoto = async (photo) => {
-    //     const refDoc = ref(storageCon, 'historial/' + v4());
-    //     const photoSti = await LoadImg(photo);
 
-    //     // console.log(photoSti);
-    //     await uploadBytes(refDoc, photoSti);
-    //     await getDownloadURL(refDoc)
-    //         .then(e => {
-    //             console.log(e)
-    //         })
-
-    // }
 
 
 

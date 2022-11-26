@@ -37,6 +37,7 @@ export const HomeScreen = () => {
                 data={dataHomePost}
                 ListHeaderComponent={storyHome}
                 renderItem={() => <Text>Hola Mundo</Text>}
+                keyExtractor={item => item.createAt}
             />
         </View>
     )

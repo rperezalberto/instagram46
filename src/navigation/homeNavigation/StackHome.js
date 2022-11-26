@@ -7,6 +7,7 @@ import { globalStyle } from '../../theme/globalStyle';
 import { colores } from '../../theme/colores';
 import { MenuAddStory } from '../../components/home/MenuAddStory';
 import { EditPhotoStory } from '../../components/home/EditPhotoStory';
+import { StoryProgressive } from '../../components/home/StoryProgressive';
 
 
 const Stack = createStackNavigator();
@@ -14,6 +15,8 @@ const Stack = createStackNavigator();
 // const navigation = useNavigation();
 
 export const StackHome = () => {
+
+
     return (
         <Stack.Navigator
             screenOptions={{
@@ -53,6 +56,23 @@ export const StackHome = () => {
                 component={EditPhotoStory}
                 options={{
                     title: 'Editar imagen',
+                    headerTitleAlign: 'center',
+                    headerLeft: () => <MenuAddStory />,
+                    headerTitleStyle: {
+                        color: colores.white,
+                    },
+                    headerStyle: {
+                        backgroundColor: colores.black,
+                        elevation: 0,
+                    }
+                }}
+            />
+
+            <Stack.Screen
+                name='StoryProgressive'
+                component={StoryProgressive}
+                options={{
+                    title: '',
                     headerTitleAlign: 'center',
                     headerLeft: () => <MenuAddStory />,
                     headerTitleStyle: {
