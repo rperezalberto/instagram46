@@ -1,19 +1,16 @@
+import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useState, useEffect } from 'react'
 import { useWindowDimensions } from 'react-native';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { useSelector } from 'react-redux';
 import { colores } from '../../theme/colores';
 
-export const StoryProgressive = () => {
+export const StoryProgressive = ({ route }) => {
 
     const { width } = useWindowDimensions();
     const [time, setTime] = useState(0);
-
-    const { getStory } = useSelector(state => state.home);
-
-
+    const infoPost = route.params;
     const navigation = useNavigation();
 
     let valor = 0;
@@ -30,9 +27,6 @@ export const StoryProgressive = () => {
             }, 1000);
         }, 1000);
     }, [])
-
-
-    console.log(getStory)
 
 
 
@@ -52,10 +46,10 @@ export const StoryProgressive = () => {
             />
             <Image
                 style={{ width: '100%', height: '100%' }}
-                source={{ uri: getStory[0].idPhoto }}
+                source={{ uri: infoPost.idPhoto }}
             />
             <View style={styles.containerTxt}>
-                <Text style={styles.txt}>{getStory[1].comment}</Text>
+                <Text style={styles.txt}>{infoPost.comment}</Text>
             </View>
         </View>
     )

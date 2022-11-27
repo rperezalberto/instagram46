@@ -40,9 +40,9 @@ export const StoryHome = () => {
         <View style={styles.container}>
             <FlatList
                 data={getStory}
-                renderItem={({ item, index }) => {
+                renderItem={({ item }) => {
                     return (
-                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => navigation.navigate('StoryProgressive')}>
+                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => navigation.navigate('StoryProgressive', { ...item })}>
                             <LinearGradient colors={["#FBAA47", "#D91A46", "#A60F93"]} style={styles.containerStory}>
                                 <View style={styles.subContainer}>
                                     <Image source={{ uri: item.idPhoto }} style={styles.img} />

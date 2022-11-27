@@ -4,7 +4,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { colores } from '../../theme/colores';
 import { globalStyle } from '../../theme/globalStyle';
 import { AntDesign } from '@expo/vector-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIng } from '../../feactures/auth/Auth';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { authCon, firestoreCon } from '../../firebase/config';
@@ -12,7 +12,7 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { ActivityLoand } from '../util/ActivityLoand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getEmail, restoreToke } from '../../feactures/profile/profile';
-
+import { resetData } from '../../feactures/home/Home';
 
 
 export const SignInScrren = ({ navigation }) => {
@@ -21,17 +21,13 @@ export const SignInScrren = ({ navigation }) => {
     const [whatch, setWhacth] = useState(true);
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-
     const dispatch = useDispatch();
-
     const [isLoad, setIsLoad] = useState(false);
-
+    const { token } = useSelector(state => state.profile);
 
     // Iniciar Session 
     const SignIn = async () => {
         setIsLoad(true)
-
-
         await signInWithEmailAndPassword(authCon, email, pass)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -67,7 +63,10 @@ export const SignInScrren = ({ navigation }) => {
 
         try {
             if (value !== null) {
-                dispatch(restoreToke(value))
+                dispatch(restoreToke(value));
+                dispatch(resetData());
+            } else {
+                dispatch(resetData());
             }
         } catch (error) {
             console.log(error);
@@ -93,8 +92,6 @@ export const SignInScrren = ({ navigation }) => {
         })
         getValue();
     }, []);
-
-
 
 
     if (isLoad) return <ActivityLoand />

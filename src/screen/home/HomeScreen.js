@@ -9,6 +9,7 @@ import { getDataHomePost } from '../../feactures/home/Home';
 export const HomeScreen = () => {
 
     const { dataHomePost } = useSelector(state => state.home);
+    const { token } = useSelector(state => state.profile);
     const dispatch = useDispatch();
 
     // const [dataHome, setDataHome] = useState([]);
@@ -21,6 +22,7 @@ export const HomeScreen = () => {
                 dispatch(getDataHomePost(doc.data()));
             })
         })
+
     }
 
 
@@ -36,8 +38,8 @@ export const HomeScreen = () => {
             <FlatList
                 data={dataHomePost}
                 ListHeaderComponent={storyHome}
+                keyExtractor={item => item.id}
                 renderItem={() => <Text>Hola Mundo</Text>}
-                keyExtractor={item => item.createAt}
             />
         </View>
     )

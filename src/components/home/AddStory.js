@@ -48,11 +48,6 @@ export const AddStory = () => {
         getProfle();
     }, []);
 
-
-
-
-
-
     return (
         <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => navigation.navigate('AddPhotoStory')}>
             <View style={styles.containerStory}>
