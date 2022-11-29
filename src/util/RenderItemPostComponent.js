@@ -1,18 +1,19 @@
 import { useEffect, useState, useMemo } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { colores } from '../../theme/colores';
+import { colores } from '../theme/colores';
 import { Avatar } from '@rneui/themed'
-import { globalStyle } from '../../theme/globalStyle';
+import { globalStyle } from '../theme/globalStyle';
 
 import { AntDesign } from '@expo/vector-icons';
-import { LikeButtonInfo } from '../../screen/util/InfoIconFunction';
+import { LikeButtonInfo } from '../screen/util/InfoIconFunction';
 
 import { doc, onSnapshot, collection, query, where, getDocs } from 'firebase/firestore';
-import { firestoreCon } from '../../firebase/config';
+import { firestoreCon } from '../firebase/config';
 import { useDispatch } from 'react-redux';
-import { likePostInfo, listLikeDataInfo } from '../../feactures/profile/profile';
-import { ActivityLoand } from '../../screen/util/ActivityLoand';
+import { likePostInfo, listLikeDataInfo } from '../feactures/profile/profile';
+import { ActivityLoand } from '../screen/util/ActivityLoand';
+import { isLikePost } from '../feactures/home/Home';
 
 
 export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
@@ -36,7 +37,7 @@ export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
                     dispatch(likePostInfo(dataLike));
                     setIsLike(dataLike);
                     (dataLike.like) ? setIsLikeTrue(false) : setIsLikeTrue(true);
-
+                    dispatch(isLikePost(isLike));
                 }
 
             })
@@ -75,25 +76,25 @@ export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
     return (
         <View key={index}>
             {/* Menu del avatar post */}
-            <View style={[globalStyle.container, styles.menuAvatar]} key={index}>
+            <View style={[globalStyle.container, globalStyle.menuAvatar]} key={index}>
                 <View style={{ flexDirection: "row" }} >
                     <Avatar
                         rounded
-                        source={(dataPerfil.avatar) ? { uri: dataPerfil.avatar } : require('../../assets/imgPerfil/Oval.png')}
+                        source={(dataPerfil.avatar) ? { uri: dataPerfil.avatar } : require('../assets/imgPerfil/Oval.png')}
                     />
 
                     <View style={{ marginHorizontal: 5 }}>
-                        <Text style={styles.txtName}>{dataPerfil.userName}</Text>
+                        <Text style={globalStyle.txtName}>{dataPerfil.userName}</Text>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={styles.txtAddress}>Tokio </Text>
-                            <Text style={styles.txtAddress}>Japon</Text>
+                            <Text style={globalStyle.txtAddress}>Tokio </Text>
+                            <Text style={globalStyle.txtAddress}>Japon</Text>
                         </View>
                     </View>
 
                 </View>
 
                 <TouchableOpacity>
-                    <Image source={require('../../assets/icons/more.png')} />
+                    <Image source={require('../assets/icons/more.png')} />
                 </TouchableOpacity>
             </View>
 
@@ -103,33 +104,33 @@ export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
 
 
                 <View key={index} style={{ width: '100%', backgroundColor: 'red' }}>
-                    <Image source={{ uri: item.imgPost }} style={styles.img} />
+                    <Image source={{ uri: item.imgPost }} style={globalStyle.img} />
                 </View>
 
 
-                <View style={[globalStyle.container, styles.containerLike]}>
+                <View style={[globalStyle.container, globalStyle.containerLike]}>
 
                     <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity style={styles.imgMargin} onPress={() => LikeButtonInfo(dataPerfil, item, isLikeTrue)}>
+                        <TouchableOpacity style={globalStyle.imgMargin} onPress={() => LikeButtonInfo(dataPerfil, item, isLikeTrue)}>
                             {
-                                (isLike.like) ? <AntDesign name="heart" size={24} color="red" /> : <Image source={require('../../assets/icons/Like.png')} />
+                                (isLike.like) ? <AntDesign name="heart" size={24} color="red" /> : <Image source={require('../assets/icons/Like.png')} />
                             }
 
 
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.imgMargin}>
-                            <Image source={require('../../assets/icons/Comment.png')} />
+                        <TouchableOpacity style={globalStyle.imgMargin}>
+                            <Image source={require('../assets/icons/Comment.png')} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.imgMargin}>
-                            <Image source={require('../../assets/icons/Message.png')} />
+                        <TouchableOpacity style={globalStyle.imgMargin}>
+                            <Image source={require('../assets/icons/Message.png')} />
                         </TouchableOpacity>
 
                     </View>
 
                     <TouchableOpacity>
-                        <Image source={require('../../assets/icons/Save.png')} />
+                        <Image source={require('../assets/icons/Save.png')} />
                     </TouchableOpacity>
 
                 </View>
@@ -141,15 +142,15 @@ export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
                                 source={{ uri: item.avatar }}
                             />
                         </TouchableOpacity>
-                        <Text style={styles.txtComen}> Liked by </Text>
-                        <Text style={[styles.txtComen, { fontWeight: '900' }]}>craig_love </Text>
-                        <Text style={styles.txtComen}>and </Text>
-                        <Text style={[styles.txtComen, { fontWeight: '900' }]}> 44,686 others </Text>
+                        <Text style={globalStyle.txtComen}> Liked by </Text>
+                        <Text style={[globalStyle.txtComen, { fontWeight: '900' }]}>craig_love </Text>
+                        <Text style={globalStyle.txtComen}>and </Text>
+                        <Text style={[globalStyle.txtComen, { fontWeight: '900' }]}> 44,686 others </Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={[styles.txtComen, { fontWeight: '900' }]}> {dataPerfil.userName} </Text>
-                        <Text style={styles.txtComen}> {item.decrpImg}</Text>
+                        <Text style={[globalStyle.txtComen, { fontWeight: '900' }]}> {dataPerfil.userName} </Text>
+                        <Text style={globalStyle.txtComen}> {item.decrpImg}</Text>
                     </View>
                 </View>
 
@@ -161,36 +162,3 @@ export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
 
 
 
-const styles = StyleSheet.create({
-    menuAvatar: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginVertical: 14
-    },
-    txtName: {
-        fontSize: 13,
-        fontWeight: '900',
-        color: colores.black
-    },
-    txtAddress: {
-        fontSize: 11
-    },
-    img: {
-        width: '100%',
-        height: 375
-    },
-    containerLike: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginVertical: 10
-    },
-    imgMargin: {
-        marginHorizontal: 4
-    },
-    txtComen: {
-        fontSize: 13,
-        color: colores.black
-    }
-})

@@ -35,8 +35,8 @@ export const InfoProfile = () => {
             {/* <Image source={require()} /> */}
             <View style={[globalStyle.container, { backgroundColor: colores.white }]}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <View style={styles.avatarGrey}>
-                        <View style={styles.avatarWhite}>
+                    <View style={globalStyle.avatarGrey}>
+                        <View style={globalStyle.avatarWhite}>
                             {
                                 (dataPerfil.avatar) ? <Image
                                     style={globalStyle.avatarImg}
@@ -47,19 +47,19 @@ export const InfoProfile = () => {
 
                         </View>
                     </View>
-                    <View style={styles.contInfo}>
-                        <Text style={styles.txtNum}>{lengthPost}</Text>
-                        <Text style={styles.txtInfoNum}>Publicaciones</Text>
+                    <View style={globalStyle.contInfo}>
+                        <Text style={globalStyle.txtNum}>{lengthPost}</Text>
+                        <Text style={globalStyle.txtInfoNum}>Publicaciones</Text>
                     </View>
 
-                    <View style={styles.contInfo}>
-                        <Text style={styles.txtNum}>834</Text>
-                        <Text style={styles.txtInfoNum}>Seguidores</Text>
+                    <View style={globalStyle.contInfo}>
+                        <Text style={globalStyle.txtNum}>834</Text>
+                        <Text style={globalStyle.txtInfoNum}>Seguidores</Text>
                     </View>
 
-                    <View style={styles.contInfo}>
-                        <Text style={styles.txtNum}>162</Text>
-                        <Text style={styles.txtInfoNum}>Seguidos</Text>
+                    <View style={globalStyle.contInfo}>
+                        <Text style={globalStyle.txtNum}>162</Text>
+                        <Text style={globalStyle.txtInfoNum}>Seguidos</Text>
                     </View>
                 </View>
 
@@ -70,8 +70,8 @@ export const InfoProfile = () => {
                 </View>
 
 
-                <TouchableOpacity style={styles.btnEdit} onPress={() => navigator.navigate('EdictInfoProfile')}>
-                    <Text style={styles.txtBtn}>Editar Perfil</Text>
+                <TouchableOpacity style={globalStyle.btnEdit} onPress={() => navigator.navigate('EdictInfoProfile')}>
+                    <Text style={globalStyle.txtBtn}>Editar Perfil</Text>
                 </TouchableOpacity>
 
             </View>
@@ -80,49 +80,3 @@ export const InfoProfile = () => {
 }
 
 
-
-const styles = StyleSheet.create({
-    avatarGrey: {
-        width: 100,
-        height: 100,
-        borderRadius: 100,
-        backgroundColor: colores.grey,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    avatarWhite: {
-        width: 96,
-        height: 96,
-        backgroundColor: colores.white,
-        borderRadius: 100,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    contInfo: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    txtNum: {
-        fontSize: 16,
-        fontWeight: '900',
-        color: colores.black
-    },
-    txtInfoNum: {
-        fontSize: 13,
-        fontWeight: '400',
-        color: colores.black
-    },
-    btnEdit: {
-        height: 29,
-        borderColor: colores.grey,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    txtBtn: {
-        fontSize: 13,
-        fontWeight: '900',
-        lineHeight: 18,
-    }
-})

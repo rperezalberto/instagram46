@@ -40,7 +40,7 @@ export const SignUpScreen = ({ navigation }) => {
         <View style={{ ...globalStyle.containerGlobal, justifyContent: 'center', alignItems: 'center' }}>
             <Image
                 style={{ marginBottom: 40 }}
-                source={require('../../assets/icons/logoHome.png')}
+                source={require('../../assets/logoHome.png')}
             />
 
             <Input

@@ -56,28 +56,11 @@ export const StoryHome = () => {
                 showsHorizontalScrollIndicator={false}
                 initialNumToRender={5}
                 ListHeaderComponent={<AddStory />}
-                keyExtractor={item => item.userName}
+                keyExtractor={item => item.idPhoto}
             />
         </View>
     )
 }
-
-
-
-
-// const _storyItem = ({ item }) => {
-//     console.log(props)
-//     return (
-//         <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }}  >
-//             <LinearGradient colors={["#FBAA47", "#D91A46", "#A60F93"]} style={styles.containerStory}>
-//                 <View style={styles.subContainer}>
-//                     <Image source={{ uri: item.idPhoto }} style={styles.img} />
-//                 </View>
-//             </LinearGradient>
-//             <Text>{item.userName}</Text>
-//         </TouchableOpacity >
-//     )
-// }
 
 
 const styles = StyleSheet.create({
@@ -97,14 +80,14 @@ const styles = StyleSheet.create({
     subContainer: {
         backgroundColor: colores.white,
         borderRadius: 100,
-        width: 60,
-        height: 60,
+        width: 62,
+        height: 62,
         justifyContent: 'center',
         alignItems: 'center'
     },
     img: {
-        width: 56,
-        height: 56,
+        width: 58,
+        height: 58,
         borderRadius: 100
     }
 })

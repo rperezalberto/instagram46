@@ -102,7 +102,7 @@ export const SignInScrren = ({ navigation }) => {
 
             <View style={{ marginBottom: 40 }}>
                 <Image
-                    source={require('../../assets/icons/logoHome.png')}
+                    source={require('../../assets/logoHome.png')}
                 />
             </View>
 

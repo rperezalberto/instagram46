@@ -1,17 +1,15 @@
 
 import { View, FlatList, } from 'react-native';
 import { useSelector } from 'react-redux';
+import { RenderItemPostComponent } from '../../util/RenderItemPostComponent';
 
-import { RenderItemPostComponent } from '../../components/profile/RenderItemPostComponent';
 
 
 
 
 export const DetailPost = () => {
 
-    const { dataPerfil, dataPerfilPost, ListLikeUser } = useSelector(state => state.profile);
-
-    // console.log(ListLikeUser);
+    const { dataPerfil, dataPerfilPost } = useSelector(state => state.profile);
 
     return (
         <View >

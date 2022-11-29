@@ -5,4 +5,5 @@ export const colores = {
     grey: '#00000040',
     greyLine: '#00000010',
     inp: '#979797',
+    greyClaro: '#EFEFEF'
 }

@@ -1,29 +1,48 @@
 import { useEffect, useState, useMemo } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 import { firestoreCon } from '../../firebase/config';
 import { useSelector, useDispatch } from 'react-redux';
 import { StoryHome } from '../../components/home/StoryHome';
-import { getDataHomePost } from '../../feactures/home/Home';
+import { getDataHomePost, getgetDataStory } from '../../feactures/home/Home';
+// import { RenderItemPostComponent } from '../../util/RenderItemPostComponent';
+import { RenderItemHome } from '../../util/RenderItemHome';
+import { ActivityLoand } from '../util/ActivityLoand';
+
 
 export const HomeScreen = () => {
 
-    const { dataHomePost } = useSelector(state => state.home);
+    const { getDataHomePostValue } = useSelector(state => state.home);
+    const [isLoad, setIsLoad] = useState(false);
+    // const { dataPerfil } = useSelector(state => state.profile);
+
     const { token } = useSelector(state => state.profile);
     const dispatch = useDispatch();
 
-    // const [dataHome, setDataHome] = useState([]);
+    const [dataHome, setDataHome] = useState();
 
 
-    const getDataHome = () => {
-        onSnapshot(collection(firestoreCon, 'usuario'), (document) => {
-            document.forEach(doc => {
-                // setDataHome(doc.data());
-                dispatch(getDataHomePost(doc.data()));
-            })
+    // console.log(dataHome);
+    const getDataHome = async () => {
+        const querySnapshot = await getDocs(collection(firestoreCon, 'usuario'));
+        querySnapshot.forEach(item => {
+            const data = item.data();
+            getHomePost(data.id);
         })
-
+        setIsLoad(false);
     }
+
+
+    const getHomePost = async (id) => {
+        const dfRef = await getDocs(collection(firestoreCon, 'usuario', id, 'post'));
+        dfRef.forEach(items => {
+            const data = items.data(data);
+            dispatch(getDataHomePost(data));
+            // getHomePostExit(id, data);
+        })
+    }
+
+
 
 
     useEffect(() => {
@@ -33,13 +52,17 @@ export const HomeScreen = () => {
 
     const storyHome = useMemo(() => <StoryHome />, [])
 
+    // const homeItem = useMemo(() => <RenderItemHome item={item} index={index} />, []);
+
+    if (isLoad) return <ActivityLoand />
+
     return (
         <View style={styles.container}>
             <FlatList
-                data={dataHomePost}
+                data={getDataHomePostValue}
                 ListHeaderComponent={storyHome}
-                keyExtractor={item => item.id}
-                renderItem={() => <Text>Hola Mundo</Text>}
+                keyExtractor={item => item.imgPost}
+                renderItem={({ item, index }) => <RenderItemHome item={item} index={index} />}
             />
         </View>
     )

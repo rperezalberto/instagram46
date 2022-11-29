@@ -4,7 +4,11 @@ import { colores } from "./colores";
 
 export const globalStyle = StyleSheet.create({
     container: {
-        marginHorizontal: 10
+        marginHorizontal: 10,
+    },
+    backgroundView: {
+        flex: 1,
+        backgroundColor: colores.white
     },
     containerGlobal: {
         flex: 1,
@@ -78,7 +82,90 @@ export const globalStyle = StyleSheet.create({
         color: colores.white,
         fontWeight: '900',
         padding: 10
+    },
+
+    // Estilos de perfil usuario Post
+    menuAvatar: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 14
+    },
+    txtName: {
+        fontSize: 13,
+        fontWeight: '900',
+        color: colores.black
+    },
+    txtAddress: {
+        fontSize: 11
+    },
+    img: {
+        width: '100%',
+        height: 375
+    },
+    containerLike: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 10
+    },
+    imgMargin: {
+        marginHorizontal: 4
+    },
+    txtComen: {
+        fontSize: 13,
+        color: colores.black
+    },
+
+    // Estilo de informacion del perfil
+    avatarGrey: {
+        width: 100,
+        height: 100,
+        borderRadius: 100,
+        backgroundColor: colores.grey,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    avatarWhite: {
+        width: 96,
+        height: 96,
+        backgroundColor: colores.white,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    contInfo: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    txtNum: {
+        fontSize: 16,
+        fontWeight: '900',
+        color: colores.black
+    },
+    txtInfoNum: {
+        fontSize: 13,
+        fontWeight: '400',
+        color: colores.black
+    },
+    btnEdit: {
+        flexDirection: 'row',
+        width: '100%',
+    },
+    btnInfoMessage: {
+        marginRight: 10,
+        backgroundColor: colores.greyClaro,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: "center"
+    },
+    txtBtnInfoMessage: {
+        paddingVertical: 10,
+        fontWeight: '500'
+    },
+    txtBtn: {
+        fontSize: 13,
+        fontWeight: '900',
+        lineHeight: 18,
     }
-
-
 });

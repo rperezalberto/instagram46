@@ -8,14 +8,23 @@ import { colores } from '../../theme/colores';
 import { MenuAddStory } from '../../components/home/MenuAddStory';
 import { EditPhotoStory } from '../../components/home/EditPhotoStory';
 import { StoryProgressive } from '../../components/home/StoryProgressive';
+import { ProfileInfo } from '../../screen/home/ProfileInfo';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons';
+import { getDataPofileInfo } from '../../feactures/home/Home';
+import { useDispatch, useSelector } from 'react-redux';
+import { View } from 'react-native';
+
 
 
 const Stack = createStackNavigator();
 
-// const navigation = useNavigation();
 
-export const StackHome = () => {
+export const StackHome = ({ navigation }) => {
 
+    const { geProfileActive } = useSelector(state => state.home);
+
+    const dispatch = useDispatch();
 
     return (
         <Stack.Navigator
@@ -84,6 +93,38 @@ export const StackHome = () => {
                     }
                 }}
             />
+
+            <Stack.Screen
+                name='ProfileInfo'
+                component={ProfileInfo}
+                options={{
+                    title: geProfileActive.userName,
+                    headerTitleAlign: 'center',
+                    headerRight: () => {
+                        return (
+                            <View style={[globalStyle.container, { flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }]}>
+                                <TouchableOpacity style={{ marginRight: 20 }}>
+                                    <Fontisto name="bell" size={24} color={colores.black} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Fontisto name="more-v-a" size={20} color={colores.black} />
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    },
+                    headerLeft: () => {
+                        return (
+                            <TouchableOpacity style={globalStyle.container} onPress={() => {
+                                navigation.goBack();
+                                dispatch(getDataPofileInfo('reset'));
+                            }}>
+                                <MaterialIcons name="arrow-back" size={24} color={colores.black} />
+                            </TouchableOpacity>
+                        )
+                    }
+                }}
+            />
+
         </Stack.Navigator>
     )
 }
