@@ -4,9 +4,10 @@ import { SearchScreen } from '../screen/search/SearchScreen';
 import { SharedScreen } from '../screen/shared/SharedScreen';
 import { FollowingScreen } from '../screen/follow/FollowingScreen';
 import { StackProfile } from './PerfilNavigation/StackProfile';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { globalStyle } from '../theme/globalStyle';
 import { StackHome } from './homeNavigation/StackHome';
+import { getDataPofileInfo } from '../feactures/home/Home';
 
 
 const Tabs = createBottomTabNavigator();
@@ -14,6 +15,7 @@ const Tabs = createBottomTabNavigator();
 export const TabsNavigation = () => {
 
     const { dataPerfil } = useSelector(state => state.profile);
+    const dispatch = useDispatch();
 
 
     return (
@@ -33,12 +35,15 @@ export const TabsNavigation = () => {
                 options={{
                     headerShown: false,
                     title: '',
-
-                    tabBarIcon: ({ focused }) => (focused)
-                        ?
-                        <Image source={require('../assets/icons/HomeBlack.png')} />
-                        :
-                        <Image source={require('../assets/icons/home.png')} />
+                    tabBarIcon: ({ focused }) => {
+                        if (focused) {
+                            dispatch(getDataPofileInfo('reset'));
+                            return <Image source={require('../assets/icons/HomeBlack.png')} />
+                        } else {
+                            dispatch(getDataPofileInfo('reset'));
+                            return <Image source={require('../assets/icons/home.png')} />
+                        }
+                    }
 
                 }}
             />
@@ -86,6 +91,7 @@ export const TabsNavigation = () => {
                     headerShown: false,
                     tabBarIcon: (({ focused }) => {
                         if (dataPerfil.avatar) {
+                            dispatch(getDataPofileInfo('reset'));
                             return <Image source={{ uri: dataPerfil.avatar }} style={{ width: 30, height: 30, borderRadius: 100 }} />
                         } else {
                             if (focused) {

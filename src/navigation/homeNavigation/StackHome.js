@@ -14,6 +14,7 @@ import { Fontisto } from '@expo/vector-icons';
 import { getDataPofileInfo } from '../../feactures/home/Home';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from 'react-native';
+import { PreViewPhotoPost } from '../../screen/home/PreViewPhotoPost';
 
 
 
@@ -122,6 +123,15 @@ export const StackHome = ({ navigation }) => {
                             </TouchableOpacity>
                         )
                     }
+                }}
+            />
+
+
+            <Stack.Screen
+                name='PreViewPhotoPost'
+                component={PreViewPhotoPost}
+                options={{
+                    title: "Nueva publicación"
                 }}
             />
 

@@ -37,7 +37,7 @@ export const StoryHome = () => {
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: colores.white, borderWidth: 1, borderColor: colores.greyClaro }]}>
             <FlatList
                 data={getStory}
                 renderItem={({ item }) => {
@@ -48,7 +48,7 @@ export const StoryHome = () => {
                                     <Image source={{ uri: item.idPhoto }} style={styles.img} />
                                 </View>
                             </LinearGradient>
-                            <Text>{item.userName}</Text>
+                            <Text style={{ paddingBottom: 5 }}>{item.userName}</Text>
                         </TouchableOpacity >
                     )
                 }}

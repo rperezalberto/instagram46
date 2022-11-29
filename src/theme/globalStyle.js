@@ -151,6 +151,18 @@ export const globalStyle = StyleSheet.create({
     btnEdit: {
         flexDirection: 'row',
         width: '100%',
+        marginVertical: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: colores.greyClaro
+    },
+    btnInfoContianer: {
+        flexDirection: 'row',
+        width: '100%',
+        marginVertical: 10,
+        borderRadius: 10,
     },
     btnInfoMessage: {
         marginRight: 10,
@@ -164,6 +176,7 @@ export const globalStyle = StyleSheet.create({
         fontWeight: '500'
     },
     txtBtn: {
+        padding: 10,
         fontSize: 13,
         fontWeight: '900',
         lineHeight: 18,

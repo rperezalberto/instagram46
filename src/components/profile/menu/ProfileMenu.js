@@ -2,8 +2,14 @@ import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colores } from '../../../theme/colores';
 import { globalStyle } from '../../../theme/globalStyle';
+import { useDispatch } from 'react-redux';
+import { openToggle, openToggleAdd } from '../../../feactures/profile/profile';
 
 export const ProfileMenu = () => {
+
+    const dispatch = useDispatch();
+
+
     return (
         <View>
             <View style={[globalStyle.container, styles.contianer]}>

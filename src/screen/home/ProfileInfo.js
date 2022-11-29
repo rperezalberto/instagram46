@@ -47,8 +47,7 @@ export const ProfileInfo = ({ route }) => {
     const _ItenPostProfile = ({ item, index }) => {
         return (
             <TouchableOpacity key={index} style={styles.containeImg} onPress={() => navitation.navigate('DetailPost')}>
-                <Image source={{ uri: item.imgPost }} style={{ width: widthDime, height: 100, marginBottom: -15 }} />
-                <Text>{item.name}</Text>
+                <Image source={{ uri: item.imgPost }} style={{ width: widthDime, height: 100, marginBottom: 0 }} />
             </TouchableOpacity>
         )
     }
@@ -96,7 +95,7 @@ export const ProfileInfo = ({ route }) => {
                     </View>
 
 
-                    <View style={globalStyle.btnEdit} onPress={() => navigator.navigate('EdictInfoProfile')}>
+                    <View style={globalStyle.btnInfoContianer} onPress={() => navigator.navigate('EdictInfoProfile')}>
                         <TouchableOpacity style={[globalStyle.btnInfoMessage, { width: widthBtnMessage }]}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={globalStyle.txtBtnInfoMessage}>Siguiendo</Text>
@@ -119,15 +118,14 @@ export const ProfileInfo = ({ route }) => {
 
     return (
 
-        <View style={[globalStyle.backgroundView, { flex: 1, flexDirection: 'row', backgroundColor: 'red' }]}>
-            <View style={{ flex: 1 }}>
-                <FlatList
-                    data={dataProfileInfo}
-                    ListHeaderComponent={_HeaderProfileInfo}
-                    renderItem={_ItenPostProfile}
-                    keyExtractor={item => item.imgPost}
-                />
-            </View>
+        <View style={styles.contaner}>
+            <FlatList
+                data={dataProfileInfo}
+                numColumns={3}
+                ListHeaderComponent={_HeaderProfileInfo}
+                renderItem={_ItenPostProfile}
+                keyExtractor={item => item.imgPost}
+            />
         </View>
     )
 }
@@ -135,6 +133,10 @@ export const ProfileInfo = ({ route }) => {
 
 
 const styles = StyleSheet.create({
+    contaner: {
+        flex: 1,
+        backgroundColor: colores.white,
+    },
     containeImg: {
         width: '33%',
         justifyContent: 'center',

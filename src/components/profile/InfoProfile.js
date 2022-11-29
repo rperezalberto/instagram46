@@ -53,12 +53,12 @@ export const InfoProfile = () => {
                     </View>
 
                     <View style={globalStyle.contInfo}>
-                        <Text style={globalStyle.txtNum}>834</Text>
+                        <Text style={globalStyle.txtNum}>0</Text>
                         <Text style={globalStyle.txtInfoNum}>Seguidores</Text>
                     </View>
 
                     <View style={globalStyle.contInfo}>
-                        <Text style={globalStyle.txtNum}>162</Text>
+                        <Text style={globalStyle.txtNum}>0</Text>
                         <Text style={globalStyle.txtInfoNum}>Seguidos</Text>
                     </View>
                 </View>

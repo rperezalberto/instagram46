@@ -8,6 +8,7 @@ import { getDataHomePost, getgetDataStory } from '../../feactures/home/Home';
 // import { RenderItemPostComponent } from '../../util/RenderItemPostComponent';
 import { RenderItemHome } from '../../util/RenderItemHome';
 import { ActivityLoand } from '../util/ActivityLoand';
+import { colores } from '../../theme/colores';
 
 
 export const HomeScreen = () => {
@@ -57,7 +58,7 @@ export const HomeScreen = () => {
     if (isLoad) return <ActivityLoand />
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: colores.white }]}>
             <FlatList
                 data={getDataHomePostValue}
                 ListHeaderComponent={storyHome}

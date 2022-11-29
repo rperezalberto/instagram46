@@ -54,8 +54,7 @@ export const RenderItemHome = ({ item, index }) => {
                     <View style={{ marginHorizontal: 5 }}>
                         <Text style={styles.txtName}>{dataHomePost.userName}</Text>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={styles.txtAddress}>Tokio </Text>
-                            <Text style={styles.txtAddress}>Japon</Text>
+                            <Text style={styles.txtAddress}>{dataHomePost.name} </Text>
                         </View>
                     </View>
 
@@ -77,7 +76,7 @@ export const RenderItemHome = ({ item, index }) => {
                 <View style={[globalStyle.container, styles.containerLike]}>
 
                     <View style={{ flexDirection: 'row' }} >
-                        <TouchableOpacity style={styles.imgMargin} onPress={() => LikeButtonInfo(item, isLikeTrue)}>
+                        <TouchableOpacity style={styles.imgMargin} onPress={() => LikeButtonInfo(item, dataHomePost)}>
                             {
                                 (isLike.like) ? <AntDesign name="heart" size={24} color="red" /> : <Image source={require('../assets/icons/Like.png')} />
                             }
@@ -108,15 +107,15 @@ export const RenderItemHome = ({ item, index }) => {
                             source={{ uri: dataHomePost.avatar }}
                         />
                         {/* </TouchableOpacity> */}
-                        <Text style={styles.txtComen}> Liked by </Text>
+                        {/* <Text style={styles.txtComen}> Liked by </Text>
                         <Text style={[styles.txtComen, { fontWeight: '900' }]}>craig_love </Text>
                         <Text style={styles.txtComen}>and </Text>
-                        <Text style={[styles.txtComen, { fontWeight: '900' }]}> 44,686 others </Text>
+                        <Text style={[styles.txtComen, { fontWeight: '900' }]}> 44,686 others </Text> */}
                     </View>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={[styles.txtComen, { fontWeight: '900' }]}> {dataHomePost.userName} </Text>
-                        <Text style={styles.txtComen}> {(dataHomePost) && dataHomePost.decrpImg}</Text>
+                    <View style={{ alignItems: 'flex-start' }}>
+                        <Text style={[styles.txtComen, { fontWeight: '900' }]}> {dataHomePost.userName}</Text>
+                        <Text style={[styles.txtComen,]}> {(dataHomePost) && item.decrpImg}</Text>
                     </View>
                 </View>
 

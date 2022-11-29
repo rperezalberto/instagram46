@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { colores } from '../theme/colores';
@@ -86,8 +86,7 @@ export const RenderItemPostComponent = ({ item, index, dataPerfil }) => {
                     <View style={{ marginHorizontal: 5 }}>
                         <Text style={globalStyle.txtName}>{dataPerfil.userName}</Text>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={globalStyle.txtAddress}>Tokio </Text>
-                            <Text style={globalStyle.txtAddress}>Japon</Text>
+                            <Text style={globalStyle.txtAddress}>{dataPerfil.name} </Text>
                         </View>
                     </View>
 

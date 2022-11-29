@@ -28,7 +28,7 @@ export const StackProfile = ({ navigation }) => {
                 name='ProfileScreen'
                 component={ProfileScrren}
                 options={{
-                    // title: (dataPerfil.userName) ? dataPerfil.userName : emailName,
+                    title: (dataPerfil.userName) ? dataPerfil.userName : emailName,
                     headerTitleAlign: 'center',
                     headerTitleStyle: {
                         fontSize: 16,

@@ -12,7 +12,9 @@ const initialState = {
     ListLikeUser: '',
     token: null,
     dataPerfil: "",
-    dataPerfilPost: []
+    dataPerfilPost: [],
+    current: false,
+    currentAdd: false,
 }
 
 const profileSlice = createSlice({
@@ -21,6 +23,24 @@ const profileSlice = createSlice({
     reducers: {
         restoreToke: (state, action) => {
             state.token = action.payload;
+        },
+
+        openToggle: (state, action) => {
+            if (action.payload == true) {
+                state.current = true;
+                state.currentAdd = false;
+            } else {
+                state.current = false;
+            }
+        },
+
+        openToggleAdd: (state, action) => {
+            if (action.payload == true) {
+                state.currentAdd = true;
+                state.current = false;
+            } else {
+                state.currentAdd = false;
+            }
         },
 
         getEmail: (state, action) => {
@@ -62,5 +82,15 @@ const profileSlice = createSlice({
 })
 
 
-export const { restoreToke, getDataPerfil, getEmail, getDataPostProfile, listLikeDataInfo, likePostInfo, signOutSession } = profileSlice.actions;
+export const {
+    restoreToke,
+    getDataPerfil,
+    getEmail,
+    getDataPostProfile,
+    listLikeDataInfo,
+    likePostInfo,
+    signOutSession,
+    openToggle,
+    openToggleAdd
+} = profileSlice.actions;
 export default profileSlice.reducer;

@@ -99,7 +99,7 @@ export const EdictInfoProfile = () => {
 
 
     return (
-        <ScrollView>
+        <ScrollView style={globalStyle.backgroundView}>
             <View style={styles.containerImg}>
                 <Image
                     style={globalStyle.avatarImg}

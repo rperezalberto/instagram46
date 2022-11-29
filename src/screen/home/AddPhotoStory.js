@@ -9,14 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export const AddPhotoStory = () => {
 
-
     const navigation = useNavigation();
-
-
-
-
-
-
 
     const camaraPicker = async () => {
         const cameraStatus = await ImagePicker.requestCameraPermissionsAsync();
@@ -27,8 +20,8 @@ export const AddPhotoStory = () => {
         if (permission.status === 'granted') {
             let result = await ImagePicker.launchCameraAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                // allowsEditing: true,
-                aspect: [4, 3],
+                allowsEditing: true,
+                // aspect: [4, 3],
                 quality: 1,
 
             });
@@ -46,8 +39,8 @@ export const AddPhotoStory = () => {
     const albumPicker = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            // allowsEditing: true,
-            aspect: [4, 3],
+            allowsEditing: true,
+            // aspect: [4, 3],
             quality: 1,
         });
 

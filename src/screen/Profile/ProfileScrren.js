@@ -2,24 +2,26 @@ import { useRef, useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-// import BottomSheet from 'reanimated-bottom-sheet';
+import BottomSheet from 'reanimated-bottom-sheet';
 
 import { globalStyle } from '../../theme/globalStyle';
+import { ToggleMenu } from '../../components/profile/menu/ToggleMenu';
 
 import { doc, onSnapshot, collection } from 'firebase/firestore';
 import { firestoreCon } from '../../firebase/config';
 import { HeaderProfile } from '../../components/profile/HeaderProfile';
 import { colores } from '../../theme/colores';
-import { getDataPerfil, getDataPostProfile, signOutSession } from '../../feactures/profile/profile';
+import { getDataPerfil, getDataPostProfile, openToggleAdd, openToggle, signOutSession } from '../../feactures/profile/profile';
 import { ActivityLoand } from '../util/ActivityLoand';
 import { useNavigation } from '@react-navigation/native';
+import { AddPost } from '../../components/profile/menu/AddPost';
 
 
 
 export const ProfileScrren = () => {
 
 
-    const { dataPerfil, dataPerfilPost, id } = useSelector(state => state.profile);
+    const { dataPerfilPost, id, current, currentAdd } = useSelector(state => state.profile);
 
     const { width } = useWindowDimensions();
     let widthDime = (width / 3) - 3;
@@ -28,6 +30,11 @@ export const ProfileScrren = () => {
 
     const sheetRef = useRef(null);
     const sheetRefCreate = useRef(null);
+    current ? sheetRef.current.snapTo(1) : null;
+    currentAdd ? sheetRefCreate.current.snapTo(1) : null;
+
+
+    // console.log(current);
 
     const dispatch = useDispatch();
 
@@ -96,34 +103,29 @@ export const ProfileScrren = () => {
                     keyExtractor={index => index.id}
                     renderItem={ImgItem}
                 />
-                {/* <BottomSheet
-                    ref={sheetRef}
-                    snapPoints={[0, 450]}
+                <BottomSheet
+                    ref={sheetRefCreate}
+                    snapPoints={[0, 300]}
                     borderRadius={0}
                     // initialSnap={0}
-                    // onCloseEnd={() => dispatch(openToggleAdd(true))}
+                    onCloseEnd={() => dispatch(openToggleAdd(false))}
                     renderHeader={() => (
                         <View style={styles.contianerHeaderAdd}>
                             <View style={globalStyle.bgBotonToggle}></View>
                             <Text style={styles.txtHeaderToggle}>Crear</Text>
                         </View>
                     )}
-                    renderContent={() => <Text>Hola Mundo</Text>}
-                /> */}
-                {/* <BottomSheet
-                ref={sheetRef}
-                snapPoints={[450, 0]}
-                borderRadius={20}
-                initialSnap={1}
-                onCloseEnd={() => dispatch(openToggle(true))}
-                renderContent={() => <ToggleMenu />}
-            /> */}
+                    renderContent={() => <AddPost />}
+                />
+                <BottomSheet
+                    ref={sheetRef}
+                    snapPoints={[0, 450]}
+                    borderRadius={20}
+                    initialSnap={0}
+                    onCloseEnd={() => dispatch(openToggle(false))}
+                    renderContent={() => <ToggleMenu />}
+                />
             </GestureHandlerRootView >
-            <Button
-                title="Open Bottom Sheet"
-                // onPress={() => sheetRef.current.snapTo(1)}
-                onPress={() => dispatch(signOutSession())}
-            />
         </View>
     )
 }
