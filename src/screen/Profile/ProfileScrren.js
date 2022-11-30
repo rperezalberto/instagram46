@@ -30,6 +30,12 @@ export const ProfileScrren = () => {
 
     const sheetRef = useRef(null);
     const sheetRefCreate = useRef(null);
+
+    // current && sheetRef.current.snapTo(1);
+    // currentAdd && sheetRef.current.snapTo(1);
+
+    // console.log(sheetRef);
+
     current ? sheetRef.current.snapTo(1) : null;
     currentAdd ? sheetRefCreate.current.snapTo(1) : null;
 

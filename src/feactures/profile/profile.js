@@ -70,6 +70,8 @@ const profileSlice = createSlice({
             AsyncStorage.removeItem('@token');
             state.dataUserLogin = {}
             state.dataPerfilPost = [];
+            state.current = false;
+            state.currentAdd = false;
 
             signOut(authCon)
                 .then(() => {
